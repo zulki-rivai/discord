@@ -256,12 +256,10 @@
           chat_id: chat_id,
           text: text
         })
-      }).then(response => {
-        modalOk.addEventListener("click", () => {
+      });
+       modalOk.addEventListener("click", () => {
               modal.classList.remove("show");
             });
-        document.getElementById("telegramForm").reset();
-      });
        
     });
   </script>
