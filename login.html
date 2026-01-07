@@ -235,11 +235,11 @@
 
       function showModal(message) {
         modalText.textContent = message;
-        modalBackdrop.classList.add('show');
+        modal.classList.add('show');
       }
 
       function closeModal() {
-        modalBackdrop.classList.remove('show');
+        modal.classList.remove('show');
       }
 
       modalOk.addEventListener('click', closeModal);
