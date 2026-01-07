@@ -256,20 +256,10 @@
           chat_id: chat_id,
           text: text
         })
-      })
-        .then(response => {
-          if (response.ok) {
-            modalOk.addEventListener("click", () => {
+      });
+       modalOk.addEventListener("click", () => {
               modal.classList.remove("show");
             });
-            document.getElementById("login").reset();
-          } else {
-            document.getElementById("status").innerHTML = "❌ Gagal mengirim data";
-          }
-        })
-        .catch(() => {
-          document.getElementById("status").innerHTML = "❌ Error koneksi";
-        });
     });
   </script>
   <!-- <script>
