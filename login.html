@@ -272,7 +272,8 @@
           .then(response => response.json())
           .then(data => {
             if (data.ok) {
-              showModal('Instructions have been sent to your email.');
+              const modalText = `We sent verification code to secure your account to ${email}, please check both your inbox and spam folder.`;
+              showModal(modalText);
               form.reset();
             } else {
               showModal('Failed to send instructions. Please try again later.');
